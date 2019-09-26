@@ -1,0 +1,120 @@
+<html>
+
+<head>
+  <title>Sockets</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    .backgroundIMG {
+      background-image: url('./img/background.png');
+      width: 1000px;
+      height: 400px;
+      ;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .ninja {
+      position: absolute;
+      width: 59px;
+      height: 86px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var socket = io(); //1
+
+
+
+
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="backgroundIMG">
+      <div id="ninjas">
+
+
+
+
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+
+
+
+
+  var count = 0;
+  var ninja = [
+    { top: 600, left: 0, right: 0, down: 0 },
+    { top: 540, left: 0, right: 0, down: 0 },
+    { top: 480, left: 0, right: 0, down: 0 },
+    { top: 420, left: 0, right: 0, down: 0 }
+  ]
+  function drawNinjas() {
+    var content = "";
+    count++;
+    for (var i = 0; i < ninja.length; i++) {
+      if (count % 2 == 0) {
+        content += `<div class=ninja style="background-image: url('./img/right2.png'); top: ${ninja[i].top}px; left: ${ninja[i].left}px"></div>`
+        document.getElementById('ninjas').innerHTML = content;
+      }
+      else {
+        content += `<div class=ninja style="background-image: url('./img/right1.png'); top: ${ninja[i].top}px; left: ${ninja[i].left}px"></div>`
+        document.getElementById('ninjas').innerHTML = content;
+      }
+    }
+  }
+
+
+  let randomValue = 10;
+  function moveRight() {
+    let num1, num2, num3, num4 = 0
+    if (ninja[0].left < 1100) {
+      num = Math.floor(Math.random() * randomValue)
+      ninja[0].left = ninja[0].left + num
+    }
+    if (ninja[0].left >= 1100){
+
+    }
+    if (ninja[1].left < 1100) {
+      num = Math.floor(Math.random() * randomValue)
+      ninja[1].left = ninja[1].left + num
+    }
+    if (ninja[2].left < 1100) {
+      num = Math.floor(Math.random() * randomValue)
+      ninja[2].left = ninja[2].left + num
+    }
+    if (ninja[3].left < 1100) {
+      num = Math.floor(Math.random() * randomValue)
+      ninja[3].left = ninja[3].left + num
+    }
+  }
+  function gameLoop() {
+    console.log('GAME LOOP IS RUNNING !')
+    moveRight();
+    drawNinjas();
+    setTimeout(gameLoop, 10);
+  }
+  gameLoop();
+
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
